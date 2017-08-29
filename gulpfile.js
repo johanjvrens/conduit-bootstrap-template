@@ -1,30 +1,66 @@
 const gulp = require("gulp");
-const template = require("gulp-template");
-const server = require("gulp-server-livereload");
-const sass = require("gulp-sass");
-const cleanCSS = require("gulp-clean-css");
-const fs = require("fs");
-const gutil = require("gulp-util");
-
-const cleanOptions = { compatibility: "ie9" };
-const serverOptions = {
-  livereload: true,
-  directoryListing: false,
-  open: true
+// package vars
+const pkg = require("./package.json");
+// load all plugins in "devDependencies" into the variable $
+const $ = require("gulp-load-plugins")({
+  pattern: ["*"],
+  scope: ["devDependencies"]
+});
+// plumber log all errors
+const onError = err => {
+  console.log(err);
 };
+// banner ontop of css files
+const banner = [
+  "/**",
+  " * @project        <%= pkg.name %>",
+  " * @version        v<%= pkg.version %>",
+  " * @author         <%= pkg.author %>",
+  " * @build          " + $.moment().format("llll") + " ET",
+  " * @release        " +
+    $.gitRevSync.long() +
+    " [" +
+    $.gitRevSync.branch() +
+    "]",
+  " * @copyright      Copyright (c) " +
+    $.moment().format("YYYY") +
+    ", <%= pkg.copyright %>",
+  " */",
+  ""
+].join("\n");
 
-gulp.task("styles", function() {
-  gulp
-    .src("./scss/style.scss")
-    .pipe(sass().on("error", sass.logError))
-    .pipe(cleanCSS(cleanOptions))
-    .pipe(gulp.dest("./app/css/"));
+// Static Server + watching scss/html files
+gulp.task("serve", ["scss", "templates"], function() {
+  $.browserSync.init({
+    server: pkg.paths.build.html
+  });
+  gulp.watch(pkg.paths.src.scss, ["scss"]);
+  gulp.watch(pkg.paths.src.html).on("change", $.browserSync.reload);
 });
 
-gulp.task("templates", function() {
+// scss - build the scss to the build (tmp) folder, including the required paths, and writing out a sourcemap
+gulp.task("scss", () => {
+  $.fancyLog(
+    "---> Compiling scss - " + pkg.paths.build.css + pkg.vars.scssName
+  );
+  return gulp
+    .src(pkg.paths.src.scss)
+    .pipe($.plumber({ errorHandler: onError }))
+    .pipe($.sourcemaps.init({ loadMaps: true }))
+    .pipe($.sass().on("error", $.sass.logError))
+    .pipe($.cleanCss({ compatibility: "ie9" }))
+    .pipe($.header(banner, { pkg: pkg }))
+    .pipe($.sourcemaps.write("./"))
+    .pipe(gulp.dest(pkg.paths.build.css))
+    .pipe($.browserSync.stream());
+});
+
+// Html templates
+gulp.task("templates", () => {
+  $.fancyLog("---> Compiling html ");
   const templates = {};
-  const files = fs
-    .readdirSync("./pages/partials")
+  const files = $.fs
+    .readdirSync(pkg.paths.src.partials)
     .filter(function(file) {
       // return filename
       if (file.charAt(0) === "_") {
@@ -34,21 +70,21 @@ gulp.task("templates", function() {
     // add them to the templates object
     .forEach(function(template) {
       const slug = template.replace("_", "").replace(".html", "");
-      templates[slug] = fs.readFileSync("./pages/partials/" + template, "utf8");
+      templates[slug] = $.fs.readFileSync(
+        pkg.paths.src.partials + template,
+        "utf8"
+      );
     });
 
   return gulp
-    .src(["./pages/*.html"])
-    .pipe(template(templates))
-    .on("error", gutil.log)
-    .pipe(gulp.dest("./app"));
+    .src([pkg.paths.src.pages])
+    .pipe($.template(templates))
+    .on("error", $.util.log)
+    .pipe(gulp.dest(pkg.paths.build.html));
 });
 
-// Watch task
-gulp.task("default", function() {
-  // run task initially, after that watch
-  gulp.start(["styles", "templates"]);
-  gulp.watch("./scss/*.scss", ["styles"]);
-  gulp.watch("pages/**/*.html", ["templates"]);
-  gulp.src("./app").pipe(server(serverOptions));
-});
+// Default serve
+gulp.task("default", ["serve"]);
+
+// Production build
+gulp.task("build", ["scss", "templates"]);
