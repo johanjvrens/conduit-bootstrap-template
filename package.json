@@ -7,11 +7,7 @@
   "copyright": "Thinkster",
   "license": "MIT",
   "private": true,
-  "keywords": [
-    "Conduit",
-    "Bootstrap",
-    "Template"
-  ],
+  "keywords": ["Conduit", "Bootstrap", "Template"],
   "homepage": "https://github.com/gothinkster/conduit-bootstrap-template#readme",
   "repository": {
     "type": "git",
@@ -32,6 +28,7 @@
     "popper.js": "^1.12.4"
   },
   "devDependencies": {
+    "browser-sync": "^2.18.13",
     "fancy-log": "^1.3.0",
     "fs": "0.0.1-security",
     "git-rev-sync": "^1.9.1",
@@ -41,7 +38,6 @@
     "gulp-load-plugins": "^1.5.0",
     "gulp-plumber": "^1.1.0",
     "gulp-sass": "^3.1.0",
-    "gulp-server-livereload": "^1.9.2",
     "gulp-sourcemaps": "^2.6.1",
     "gulp-template": "^4.0.0",
     "gulp-util": "^3.0.8",
@@ -49,16 +45,24 @@
   },
   "paths": {
     "src": {
-      "html": "./src/pages/**/*.html",
-      "pages": "./src/pages/*.html",
-      "partials": "./src/pages/partials/",
-      "scss": "./src/scss/*.scss"
+      "base": "src/",
+      "scss": "src/scss/*.scss",
+      "html": "src/**/*.html",
+      "pages": "src/pages/*.html",
+      "partials": "src/pages/partials/"
     },
-    "dest": {
-      "css": "./.tmp/css/",
-      "html": "./.tmp/"
+    "build": {
+      "all": ".tmp*",
+      "css": ".tmp/css/",
+      "html": ".tmp/"
     },
-    "build": "./dist",
-    "tmp": "./tmp"
+    "dist": {
+      "all": "dist/"
+    }
+  },
+  "vars": {
+    "siteCssName": "site.combined.min.css",
+    "scssName": "style.scss",
+    "cssName": "style.css"
   }
 }

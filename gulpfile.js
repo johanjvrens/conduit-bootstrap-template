@@ -10,6 +10,7 @@ const $ = require("gulp-load-plugins")({
 const onError = err => {
   console.log(err);
 };
+// banner ontop of css files
 const banner = [
   "/**",
   " * @project        <%= pkg.name %>",
@@ -28,9 +29,20 @@ const banner = [
   ""
 ].join("\n");
 
-// styles - build the scss to the build (tmp) folder, including the required paths, and writing out a sourcemap
-gulp.task("styles", function() {
-  $.fancyLog("---> Compiling scss <---");
+// Static Server + watching scss/html files
+gulp.task("serve", ["scss", "templates"], function() {
+  $.browserSync.init({
+    server: pkg.paths.build.html
+  });
+  gulp.watch(pkg.paths.src.scss, ["scss"]);
+  gulp.watch(pkg.paths.src.html).on("change", $.browserSync.reload);
+});
+
+// scss - build the scss to the build (tmp) folder, including the required paths, and writing out a sourcemap
+gulp.task("scss", () => {
+  $.fancyLog(
+    "---> Compiling scss - " + pkg.paths.build.css + pkg.vars.scssName
+  );
   return gulp
     .src(pkg.paths.src.scss)
     .pipe($.plumber({ errorHandler: onError }))
@@ -39,10 +51,13 @@ gulp.task("styles", function() {
     .pipe($.cleanCss({ compatibility: "ie9" }))
     .pipe($.header(banner, { pkg: pkg }))
     .pipe($.sourcemaps.write("./"))
-    .pipe(gulp.dest(pkg.paths.dest.css));
+    .pipe(gulp.dest(pkg.paths.build.css))
+    .pipe($.browserSync.stream());
 });
 
-gulp.task("templates", function() {
+// Html templates
+gulp.task("templates", () => {
+  $.fancyLog("---> Compiling html ");
   const templates = {};
   const files = $.fs
     .readdirSync(pkg.paths.src.partials)
@@ -65,23 +80,11 @@ gulp.task("templates", function() {
     .src([pkg.paths.src.pages])
     .pipe($.template(templates))
     .on("error", $.util.log)
-    .pipe(gulp.dest(pkg.paths.dest.html));
+    .pipe(gulp.dest(pkg.paths.build.html));
 });
 
-// Watch task
-gulp.task("default", function() {
-  // run task initially, after that watch
-  gulp.start(["styles", "templates"]);
-  gulp.watch(pkg.paths.src.scss, ["styles"]);
-  gulp.watch(pkg.paths.src.html, ["templates"]);
-  gulp.src(pkg.paths.dest.html).pipe(
-    $.serverLivereload({
-      livereload: true,
-      directoryListing: false,
-      open: true
-    })
-  );
-});
+// Default serve
+gulp.task("default", ["serve"]);
 
 // Production build
-gulp.task("build", ["styles", "templates"]);
+gulp.task("build", ["scss", "templates"]);
