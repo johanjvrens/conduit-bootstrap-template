@@ -29,12 +29,13 @@ const banner = [
   ""
 ].join("\n");
 
-// static server + watching scss/html files
-gulp.task("serve", ["scss", "html"], function() {
+// static server + watching scss/njk files
+gulp.task("serve", ["scss", "njk"], function() {
   $.browserSync.init({
-    server: pkg.paths.build.html
+    server: pkg.paths.build.base
   });
   gulp.watch(pkg.paths.src.scss, ["scss"]);
+  gulp.watch(pkg.paths.src.templates, ["njk"]);
   gulp.watch(pkg.paths.src.njk).on("change", $.browserSync.reload);
 });
 
@@ -55,8 +56,8 @@ gulp.task("scss", () => {
     .pipe($.browserSync.stream());
 });
 
-// html - build the nunjucks templates to the build (tmp) folder as html files
-gulp.task("html", () => {
+// njk - build the nunjucks templates to the build (tmp) folder as html files
+gulp.task("njk", () => {
   $.fancyLog(
     $.chalk.yellowBright("Compiling: ") + $.chalk.greenBright("njk to html.")
   );
@@ -70,4 +71,4 @@ gulp.task("html", () => {
 gulp.task("default", ["serve"]);
 
 // production build (runs on yarn build)
-gulp.task("build", ["scss", "html"]);
+gulp.task("build", ["scss", "njk"]);

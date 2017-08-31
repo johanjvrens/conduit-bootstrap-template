@@ -52,12 +52,12 @@
   "paths": {
     "src": {
       "base": "src/",
-      "scss": "src/scss/*.scss",
-      "njk": "src/pages/**/*.+(njk)",
+      "scss": "src/scss/**/*.scss",
+      "njk": "src/pages/**/*.njk",
       "templates": "src/templates/"
     },
     "build": {
-      "all": ".tmp*",
+      "base": ".tmp/",
       "css": ".tmp/css/",
       "html": ".tmp/"
     },
