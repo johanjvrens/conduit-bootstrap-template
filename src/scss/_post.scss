@@ -1,13 +1,10 @@
 .post-page {
-
   .banner {
-    padding:3rem 0 2rem 0;
+    padding: 3rem 0 2rem 0;
 
     h1 {
-      font-size:2.8rem;
+      font-size: 2.8rem;
     }
-
-
 
     // Set follow/favorite buttons to lower opacity until hovered
     .btn {
@@ -20,13 +17,12 @@
 
     // Post page style overrides for metadata
     .post-meta {
-      margin:2rem 0 0 0;
+      margin: 2rem 0 0 0;
 
       .author {
-        color:#fff;
+        color: #fff;
       }
     }
-
   }
 
   // General styles for post content
@@ -34,21 +30,24 @@
     p {
       font-family: 'Source Serif Pro', serif;
       font-size: 1.2rem;
-      line-height:1.8rem;
-      margin-bottom:2rem;
+      line-height: 1.8rem;
+      margin-bottom: 2rem;
     }
 
-    h1,h2,h3,h4,h5,h6 {
-      font-weight:700 !important;
-      margin:1.6rem 0 1rem 0;
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-weight: 700 !important;
+      margin: 1.6rem 0 1rem 0;
     }
-
   }
-
 
   .post-actions {
     text-align: center;
-    margin:1.5rem 0 3rem 0;
+    margin: 1.5rem 0 3rem 0;
 
     .post-meta .info {
       text-align: left;
@@ -57,7 +56,7 @@
 
   .comment-form {
     .card-block {
-      padding:0;
+      padding: 0;
 
       textarea {
         border: 0px;
@@ -68,27 +67,27 @@
     .card-footer {
       .btn {
         font-weight: 700;
-        float:right;
+        float: right;
       }
 
       .comment-author-img {
-        height:30px;
-        width:30px;
+        height: 30px;
+        width: 30px;
       }
     }
   }
 
   .card {
     .card-footer {
-      font-size:0.8rem;
+      font-size: 0.8rem;
       font-weight: 300;
     }
     .comment-author-img {
       display: inline-block;
       vertical-align: middle;
-      height:20px;
-      width:20px;
-      border-radius:30px;
+      height: 20px;
+      width: 20px;
+      border-radius: 30px;
     }
     .comment-author {
       display: inline-block;
@@ -97,26 +96,24 @@
     .date-posted {
       display: inline-block;
       vertical-align: middle;
-      margin-left:5px;
-      color:#bbb;
+      margin-left: 5px;
+      color: #bbb;
     }
 
     .mod-options {
-      float:right;
-      color:#333;
-      font-size:1rem;
+      float: right;
+      color: #333;
+      font-size: 1rem;
 
       i {
-        margin-left:5px;
-        opacity:0.6;
-        cursor:pointer;
+        margin-left: 5px;
+        opacity: 0.6;
+        cursor: pointer;
 
         &:hover {
-          opacity:1;
+          opacity: 1;
         }
       }
     }
-
   }
-
 }

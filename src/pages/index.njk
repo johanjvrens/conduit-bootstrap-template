@@ -1,39 +1,26 @@
-<%= header %>
+{% extends "layout.njk" %}
 
-<div class="profile-page">
+{% block content %}
+<div class="home-page">
 
-  <div class="user-info">
+  <div class="banner">
     <div class="container">
-      <div class="row justify-content-md-center">
-
-        <div class="col-lg-10">
-          <img src="http://i.imgur.com/Qr71crq.jpg" class="user-img" />
-          <h4>Eric Simons</h4>
-          <p>
-            Cofounder @GoThinkster, lived in Aol's HQ for a few months, kinda looks like Peeta from the Hunger Games
-          </p>
-          <button type="button" class="btn btn-sm btn-outline-dark action-btn">
-            <i class="ion-plus-round"></i>
-            &nbsp;
-            Follow Eric Simons <span class="counter">(10)</span>
-          </button>
-        </div>
-
-      </div>
+      <h1 class="logo-font">conduit</h1>
+      <p>A place to share your knowledge.</p>
     </div>
   </div>
 
-  <div class="container">
-    <div class="row justify-content-md-center">
+  <div class="container page">
+    <div class="row">
 
-      <div class="col-lg-10">
-        <div class="posts-toggle">
+      <div class="col-lg-9">
+        <div class="feed-toggle">
           <ul class="nav nav-pills outline-active">
             <li class="nav-item">
-              <a class="nav-link active" href="#">My Posts</a>
+              <a class="nav-link disabled" href="#">Your Feed</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Favorited Posts</a>
+              <a class="nav-link active" href="#">Global Feed</a>
             </li>
           </ul>
         </div>
@@ -74,13 +61,26 @@
           </a>
         </div>
 
+      </div>
 
+      <div class="col-lg-3">
+        <div class="sidebar">
+          <p>Popular Tags</p>
+
+          <div class="tag-list">
+            <a href="#" class="badge badge-pill badge-secondary">programming</a>
+            <a href="#" class="badge badge-pill badge-secondary">javascript</a>
+            <a href="#" class="badge badge-pill badge-secondary">angularjs</a>
+            <a href="#" class="badge badge-pill badge-secondary">react</a>
+            <a href="#" class="badge badge-pill badge-secondary">mean</a>
+            <a href="#" class="badge badge-pill badge-secondary">node</a>
+            <a href="#" class="badge badge-pill badge-secondary">rails</a>
+          </div>
+        </div>
       </div>
 
     </div>
   </div>
 
 </div>
-
-
-<%= footer %>
+{% endblock %}

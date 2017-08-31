@@ -1,9 +1,10 @@
-<%= header %>
+{% extends "layout.njk" %}
 
+{% block content %}
 <div class="container">
   <ul class="nav flex-column">
     <li class="nav-item">
-      <a class="nav-link active" href="index.html">Home</a>
+      <a class="nav-link" href="index.html">Home</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="auth.html">Auth</a>
@@ -22,5 +23,4 @@
     </li>
   </ul>
 </div>
-
-<%= footer %>
+{% endblock %}

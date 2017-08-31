@@ -29,19 +29,19 @@ const banner = [
   ""
 ].join("\n");
 
-// Static Server + watching scss/html files
-gulp.task("serve", ["scss", "templates"], function() {
+// static server + watching scss/html files
+gulp.task("serve", ["scss", "html"], function() {
   $.browserSync.init({
     server: pkg.paths.build.html
   });
   gulp.watch(pkg.paths.src.scss, ["scss"]);
-  gulp.watch(pkg.paths.src.html).on("change", $.browserSync.reload);
+  gulp.watch(pkg.paths.src.njk).on("change", $.browserSync.reload);
 });
 
 // scss - build the scss to the build (tmp) folder, including the required paths, and writing out a sourcemap
 gulp.task("scss", () => {
   $.fancyLog(
-    "---> Compiling scss - " + pkg.paths.build.css + pkg.vars.scssName
+    $.chalk.yellowBright("Compiling: ") + $.chalk.greenBright("scss to css.")
   );
   return gulp
     .src(pkg.paths.src.scss)
@@ -55,36 +55,19 @@ gulp.task("scss", () => {
     .pipe($.browserSync.stream());
 });
 
-// Html templates
-gulp.task("templates", () => {
-  $.fancyLog("---> Compiling html ");
-  const templates = {};
-  const files = $.fs
-    .readdirSync(pkg.paths.src.partials)
-    .filter(function(file) {
-      // return filename
-      if (file.charAt(0) === "_") {
-        return file;
-      }
-    })
-    // add them to the templates object
-    .forEach(function(template) {
-      const slug = template.replace("_", "").replace(".html", "");
-      templates[slug] = $.fs.readFileSync(
-        pkg.paths.src.partials + template,
-        "utf8"
-      );
-    });
-
+// html - build the nunjucks templates to the build (tmp) folder as html files
+gulp.task("html", () => {
+  $.fancyLog(
+    $.chalk.yellowBright("Compiling: ") + $.chalk.greenBright("njk to html.")
+  );
   return gulp
-    .src([pkg.paths.src.pages])
-    .pipe($.template(templates))
-    .on("error", $.util.log)
+    .src(pkg.paths.src.njk)
+    .pipe($.nunjucksRender({ path: [pkg.paths.src.templates] }))
     .pipe(gulp.dest(pkg.paths.build.html));
 });
 
-// Default serve
+// default serve (runs on yarn start)
 gulp.task("default", ["serve"]);
 
-// Production build
-gulp.task("build", ["scss", "templates"]);
+// production build (runs on yarn build)
+gulp.task("build", ["scss", "html"]);
