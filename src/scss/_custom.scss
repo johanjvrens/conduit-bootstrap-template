@@ -24,7 +24,7 @@ $font-family-sans-serif: 'Source Sans Pro', sans-serif;
   font-size: 1.5rem !important;
   padding-top: 0rem !important;
   margin-right: 2rem !important;
-  color: $conduit-primary !important;
+  color: $conduit-green !important;
   // margin-bottom:40px;
 }
 // set a smooth transition for nav-link hover effects
@@ -47,8 +47,8 @@ $navbar-padding-x: 0rem !important;
 
     &.active {
       background: #fff !important;
-      border-bottom: 2px solid $conduit-primary !important;
-      color: $conduit-primary !important;
+      border-bottom: 2px solid $conduit-green !important;
+      color: $conduit-green !important;
     }
   }
 }
@@ -71,7 +71,7 @@ footer {
 
 // general error handling style
 .error-messages {
-  color: $conduit-danger !important;
+  color: $conduit-red !important;
   font-weight: bold;
 }
 
@@ -79,7 +79,7 @@ footer {
 // Basically a pretty wrapper for H1 at top
 .banner {
   color: #fff;
-  background: #333;
+  background: $conduit-green;
   padding: 2rem;
   margin-bottom: 2rem;
 

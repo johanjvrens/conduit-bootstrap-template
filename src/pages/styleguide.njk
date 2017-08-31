@@ -1,0 +1,29 @@
+{% set title = 'Styleguide' %}
+{% from "macros/swatch.njk" import cardSwatch %}
+{% extends "layout.njk" %}
+
+{% block content %}
+<div class="row">
+  {{ cardSwatch("blue") }}
+  {{ cardSwatch("indigo") }}
+  {{ cardSwatch("purple") }}
+  {{ cardSwatch("pink") }}
+  {{ cardSwatch("red") }}
+  {{ cardSwatch("orange") }}
+  {{ cardSwatch("yellow") }}
+  {{ cardSwatch("green") }}
+  {{ cardSwatch("teal") }}
+  {{ cardSwatch("cyan") }}
+</div>
+
+<div class="row">
+  {{ cardSwatch("primary") }}
+  {{ cardSwatch("secondary") }}
+  {{ cardSwatch("success") }}
+  {{ cardSwatch("danger") }}
+  {{ cardSwatch("warning") }}
+  {{ cardSwatch("info") }}
+  {{ cardSwatch("light") }}
+  {{ cardSwatch("dark") }}
+</div>
+{% endblock %}
