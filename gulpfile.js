@@ -31,12 +31,10 @@ const banner = [
 
 // static server + watching scss/njk files
 gulp.task("serve", ["scss", "njk"], function() {
-  $.browserSync.init({
-    server: pkg.paths.build.base
-  });
+  $.browserSync.init({ server: pkg.paths.build.base });
   gulp.watch(pkg.paths.src.scss, ["scss"]);
   gulp.watch(pkg.paths.src.templates, ["njk"]);
-  gulp.watch(pkg.paths.src.njk).on("change", $.browserSync.reload);
+  gulp.watch(pkg.paths.src.njk, ["njk"]);
 });
 
 // scss - build the scss to the build (tmp) folder, including the required paths, and writing out a sourcemap
@@ -64,7 +62,8 @@ gulp.task("njk", () => {
   return gulp
     .src(pkg.paths.src.njk)
     .pipe($.nunjucksRender({ path: [pkg.paths.src.templates] }))
-    .pipe(gulp.dest(pkg.paths.build.html));
+    .pipe(gulp.dest(pkg.paths.build.html))
+    .pipe($.browserSync.stream());
 });
 
 // default serve (runs on yarn start)
