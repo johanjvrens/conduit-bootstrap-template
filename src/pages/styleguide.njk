@@ -3,27 +3,40 @@
 {% extends "base.njk" %}
 
 {% block content %}
-<div class="row">
-  {{ cardSwatch("blue") }}
-  {{ cardSwatch("indigo") }}
-  {{ cardSwatch("purple") }}
-  {{ cardSwatch("pink") }}
-  {{ cardSwatch("red") }}
-  {{ cardSwatch("orange") }}
-  {{ cardSwatch("yellow") }}
-  {{ cardSwatch("green") }}
-  {{ cardSwatch("teal") }}
-  {{ cardSwatch("cyan") }}
-</div>
-
-<div class="row">
-  {{ cardSwatch("primary") }}
-  {{ cardSwatch("secondary") }}
-  {{ cardSwatch("success") }}
-  {{ cardSwatch("danger") }}
-  {{ cardSwatch("warning") }}
-  {{ cardSwatch("info") }}
-  {{ cardSwatch("light") }}
-  {{ cardSwatch("dark") }}
+<div class="container">
+  <h1>Sass Variables</h1>
+  <div class="card text-center mb-3">
+    <h4 class="card-header">Colors</h4>
+    <div class="card-body">
+      <div class="row card-text">
+        {{ cardSwatch("blue") }}
+        {{ cardSwatch("indigo") }}
+        {{ cardSwatch("purple") }}
+        {{ cardSwatch("pink") }}
+        {{ cardSwatch("red") }}
+        {{ cardSwatch("orange") }}
+        {{ cardSwatch("yellow") }}
+        {{ cardSwatch("green") }}
+        {{ cardSwatch("teal") }}
+        {{ cardSwatch("cyan") }}
+      </div>
+    </div>
+  </div>
+  <div class="card text-center mb-3">
+    <h4 class="card-header">Conduit Brand Colors</h4>
+    <div class="card-body">
+      <div class="row card-text">
+          {{ cardSwatch("primary") }}
+          {{ cardSwatch("secondary") }}
+          {{ cardSwatch("success") }}
+          {{ cardSwatch("danger") }}
+          {{ cardSwatch("warning") }}
+          {{ cardSwatch("info") }}
+          {{ cardSwatch("light") }}
+          {{ cardSwatch("dark") }}
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}

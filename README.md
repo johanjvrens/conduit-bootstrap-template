@@ -31,5 +31,17 @@ Outlining a basic folder structure with three main folders for this project.
 
 **Note**: There is no real need for it but I used `.njk` as extension for all the *src* files used by *nunjucks*.
 
+https://mozilla.github.io/nunjucks/
+https://adonisjs.com/docs/3.2/templating
+https://zellwk.com/blog/nunjucks-with-gulp/
+https://nystudio107.com/blog/a-gulp-workflow-for-frontend-development-automation
+https://nystudio107.com/blog/a-better-package-json-for-the-frontend
+https://medium.com/@andy.neale/nunjucks-a-javascript-template-engine-7731d23eb8cc
+https://css-tricks.com/killer-features-of-nunjucks/
+https://css-tricks.com/component-led-design-patterns-nunjucks-grunt/
+http://alferov.github.io/awesome-gulp/
+https://css-tricks.com/gulp-for-beginners/
+https://hackernoon.com/how-to-automate-all-the-things-with-gulp-b21a3fc96885
 
-'!templates/base.html'
+https://medium.freecodecamp.org/the-anatomy-of-a-bootstrap-dashboard-that-earns-1-000s-each-month-ed3404010d25
+https://medium.com/@programmiri/my-favored-scss-setup-with-bootstrap-4-547e9ea290f8
