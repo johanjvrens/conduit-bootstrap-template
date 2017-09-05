@@ -39,6 +39,7 @@
     "git-rev-sync": "^1.9.1",
     "gulp": "^3.9.1",
     "gulp-clean-css": "^3.7.0",
+    "gulp-data": "^1.2.1",
     "gulp-header": "^1.8.9",
     "gulp-load-plugins": "^1.5.0",
     "gulp-nunjucks-render": "^2.2.1",
@@ -53,8 +54,8 @@
     "src": {
       "base": "src/",
       "scss": "src/scss/**/*.scss",
-      "njk": "src/pages/**/*.njk",
-      "templates": "src/templates/"
+      "njk": "src/pages/**/*.+(html|njk)",
+      "templates": "src/templates/**/*.+(html|njk)"
     },
     "build": {
       "base": ".tmp/",
@@ -62,7 +63,7 @@
       "html": ".tmp/"
     },
     "dist": {
-      "all": "dist/"
+      "base": "dist/"
     }
   },
   "vars": {

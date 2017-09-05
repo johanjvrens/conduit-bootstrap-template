@@ -4,27 +4,11 @@
 {% block content %}
 <div class="container">
   <ul class="nav flex-column">
-    <li class="nav-item">
-      <a class="nav-link" href="index.html">Home</a>
+    {% for item in navItems %}
+    <li class="nav-item {% if page_id == item.menu_item %}active{% endif %}">
+      <a class="nav-link" href="{{ item.menu_item | lower | replace(" ", "") }}.html">{{ item.menu_item }}</a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" href="auth.html">Auth</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="editor.html">Editor</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="post.html">Post</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="profile.html">Profile</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="settings.html">Settings</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="styleguide.html">Styleguide</a>
-    </li>
+    {% endfor %}
   </ul>
 </div>
 {% endblock %}

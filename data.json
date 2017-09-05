@@ -1,0 +1,12 @@
+{
+  "navItems": [
+    { "menu_item": "Index" },
+    { "menu_item": "Auth" },
+    { "menu_item": "Editor" },
+    { "menu_item": "Post" },
+    { "menu_item": "Profile" },
+    { "menu_item": "Settings" },
+    { "menu_item": "Sitemap" },
+    { "menu_item": "Styleguide" }
+  ]
+}
