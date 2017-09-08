@@ -2,6 +2,9 @@
 {% extends "base.njk" %}
 
 {% block content %}
+<div class="bg-dark text-white p-5">
+    <h1 class="text-center">{{ title }}</h1>
+</div>
 <div class="container">
   <ul class="nav flex-column">
     {% for item in navItems %}
