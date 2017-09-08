@@ -46,3 +46,8 @@ Outlining a basic folder structure with three main folders for this project.
 
 [link](https://medium.freecodecamp.org/the-anatomy-of-a-bootstrap-dashboard-that-earns-1-000s-each-month-ed3404010d25)
 [link](https://medium.com/@programmiri/my-favored-scss-setup-with-bootstrap-4-547e9ea290f8)
+[link](https://github.com/GoogleChrome/workbox)
+[link](https://medium.com/musings-in-the-clouds/from-sw-precache-to-workbox-23c9079d14de)
+[link](https://kiosk-dot-codelabs-site.appspot.com/codelabs/workbox-indexeddb/index.html?index=..%2F..%2Findex#3)
+[link](https://developers.google.com/web/tools/)
+[link](https://workboxjs.org/#get-started)
